@@ -66,16 +66,16 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/dukang_its_local?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/dukang_nifi_etl_local?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("its");
+        pc.setModuleName("etl");
         pc.setParent("com.bipocloud.dukang");
         mpg.setPackageInfo(pc);
 
@@ -108,7 +108,7 @@ public class MysqlGenerator {
         strategy.setEntityColumnConstant(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
 //        strategy.setSuperControllerClass("com.baomidou.mybatisplus.samples.generator.common.BaseController");
-        strategy.setInclude("declare_employee", "declare_employee_temp", "it_entity");
+        strategy.setInclude("cycle","cycle_detail");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
